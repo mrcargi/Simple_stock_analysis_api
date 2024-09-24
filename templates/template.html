@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de {{ ticker }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #8DDFCB, #ECEE81);  /* Gradiente de colores */
+            color: #387F39;  /* Color verde oscuro */
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background:#FFEEF4;  /* Fondo blanco con opacidad */
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #FABC3F;  /* Color amarillo pálido */
+        }
+        h2 {
+            color: #82A0D8;  /* Color azul */
+            margin-top: 20px;
+        }
+        h3 {
+            color: #789f49;  /* Color verde claro */
+        }
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .info {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-left: 4px solid #EDB7ED;  /* Color rosa claro */
+            background-color: rgba(179, 179, 179, 0.2);  /* Fondo gris claro con opacidad */
+        }
+        .news {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(200, 255, 200, 0.2);
+            border-radius: 8px;
+        }
+        .news div {
+            margin-bottom: 20px;
+        }
+        .news a {
+            color: #387F39;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .news a:hover {
+            color: #FABC3F;  /* Cambia el color cuando se pasa el cursor sobre el enlace */
+        }
+        .news p {
+            margin: 5px 0;
+        }
+        .news hr {
+            border: none;
+            border-top: 1px solid #82A0D8;  /* Línea separadora azul */
+            margin: 10px 0;
+        }
+        .news small {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎀🎀🎀 Análisis de {{ ticker }} 🎀🎀🎀</h1>
+        <div class="info">
+            <h2>Tendencia: {{ trend }}</h2>
+            <h3>Soporte: {{ support }}</h3>
+            <h3>Resistencia: {{ resistance }}</h3>
+        </div>
+        <div>
+            {{ chart_img | safe }}  <!-- Renderiza el gráfico interactivo -->
+        </div>
+        
+        <div class="news">
+            <h2>Noticias Destacadas</h2>
+            {% if news_articles %}
+                {% for article in news_articles %}
+                    <div>
+                        <h3><a href="{{ article.url }}" target="_blank">{{ article.title }}</a></h3>
+                        {% if article.description %}
+                            <p>{{ article.description }}</p>
+                        {% endif %}
+                        <p><small>Publicado el: {{ article.publishedAt }}</small></p>
+                    </div>
+                    <hr>
+                {% endfor %}
+            {% else %}
+                <p>No se encontraron noticias.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
