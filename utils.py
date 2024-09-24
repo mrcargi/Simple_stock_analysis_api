@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.graph_objs as go
 import requests
 import re
-from newsapi_python import NewsApiClient
+from newsapi import NewsApiClient
 from dotenv import load_dotenv
 
 # Cargar las variables de entorno desde el archivo .env
